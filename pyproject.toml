@@ -1,16 +1,18 @@
 [project]
 name = "zm12"
-version = "0.1.0"
+version = "0.1.1"
 description = "Add your description here"
 readme = "README.md"
 authors = [
     { name = "zawawa038", email = "recchilihili111@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "typer>=0.16.0",
+]
 
 [project.scripts]
-zm12 = "zm12:main"
+zm12 = "zm12.main:app"
 
 [build-system]
 requires = ["hatchling"]
