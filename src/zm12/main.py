@@ -4,6 +4,8 @@ import typer
 
 from zm12 import mathtools
 
+from zm12 import vegetable
+
 app = typer.Typer()
 
 
@@ -36,3 +38,11 @@ def lcm(x: int, y: int):
     最小公倍数を求める
     '''
     typer.echo(mathtools.lcm(x, y))
+
+@app.command()
+def main(x: str):
+    '''
+    野菜の名前を引数にその栄養価を出力する
+    ＊現在使用不能
+    '''
+    typer.echo(vegetable.main(x))
