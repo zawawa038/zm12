@@ -6,6 +6,8 @@ from zm12 import mathtools
 
 from zm12 import vegetable
 
+from . import demo
+
 app = typer.Typer()
 
 
@@ -46,3 +48,7 @@ def main(x: str):
     ＊現在使用不能
     '''
     typer.echo(vegetable.main(x))
+
+@app.command()
+def hello(name: str= "Masaya"):
+    typer.echo(demo.hello(name))
