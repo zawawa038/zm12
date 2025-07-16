@@ -8,6 +8,8 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "pytrends>=4.9.2",
+    "tweepy>=4.16.0",
     "typer>=0.16.0",
 ]
 
