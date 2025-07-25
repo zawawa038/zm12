@@ -10,7 +10,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import time
 
-def get_search_volume(keyword, timeframe='today 12-m', geo='JP'):
+def get_search_volume(keyword, timeframe='today 1-m', geo='JP'):
     """
     Google Trendsから検索数を取得する関数
     
