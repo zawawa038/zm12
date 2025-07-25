@@ -41,7 +41,7 @@ def setup_japanese_font():
 setup_japanese_font()
 warnings.filterwarnings('ignore')
 
-def visualize_csv_data(csv_file_path, output_dir="plots", figsize=(12, 4), show_only=False, category_columns=None, plot_types="all", exclude_columns=None, initialize_dir=False):
+def visualize_csv_data(csv_file_path, output_dir="plots", figsize=(12, 4), show_only=False, category_columns=None, plot_types="all", exclude_columns=None):
     """
     CSVファイルの数値変数をヒストグラム、箱ひげ図、バイオリンプロットで可視化
     文字列列がある場合は、その値ごとに分類して別々に可視化
@@ -62,8 +62,6 @@ def visualize_csv_data(csv_file_path, output_dir="plots", figsize=(12, 4), show_
         出力するプロットの種類（"all", "hist", "box", "violin"）
     exclude_columns : str or None
         除外する列名（カンマ区切りで複数指定可能）
-    initialize_dir : bool
-        Trueの場合は出力ディレクトリを事前に初期化（デフォルト: False）
     """
     
     try:
@@ -72,25 +70,15 @@ def visualize_csv_data(csv_file_path, output_dir="plots", figsize=(12, 4), show_
         print(f"データを読み込みました: {csv_file_path}")
         print(f"データ形状: {df.shape}")
         
-        # 出力ディレクトリの処理（保存する場合のみ）
+        # 出力ディレクトリを初期化（保存する場合のみ）
         if not show_only:
             output_path = Path(output_dir)
-            
-            if initialize_dir:
-                # 初期化オプションが指定された場合：既存ディレクトリを削除して新規作成
-                if output_path.exists():
-                    import shutil
-                    shutil.rmtree(output_path)
-                    print(f"既存のディレクトリを削除しました: {output_path}")
-                output_path.mkdir(exist_ok=True)
-                print(f"出力ディレクトリを新規作成しました: {output_path}")
-            else:
-                # 通常の場合：ディレクトリが存在しない場合のみ作成
-                if not output_path.exists():
-                    output_path.mkdir(parents=True, exist_ok=True)
-                    print(f"出力ディレクトリを作成しました: {output_path}")
-                else:
-                    print(f"既存の出力ディレクトリを使用します: {output_path}")
+            if output_path.exists():
+                import shutil
+                shutil.rmtree(output_path)
+                print(f"既存のディレクトリを削除しました: {output_path}")
+            output_path.mkdir(exist_ok=True)
+            print(f"出力ディレクトリを作成しました: {output_path}")
         
         # 数値列と文字列列を抽出
         numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()

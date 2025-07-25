@@ -26,12 +26,13 @@ def anlz_csv(
     show_only: bool = typer.Option(False, "--show", "--s", help="ファイル保存せずに表示のみ"),
     category: str = typer.Option(None, "--category", "--c", help="分類に使用する列名を指定（複数の場合はカンマ区切り）"),
     plot_type: str = typer.Option("all", "--plot-type", "--t", help="プロットの種類 (all/hist/box/violin)"),
-    exclude: str = typer.Option(None, "--exclude", "--e", help="除外する列名（複数の場合はカンマ区切り）")
+    exclude: str = typer.Option(None, "--exclude", "--e", help="除外する列名（複数の場合はカンマ区切り）"),
+    initialize: bool = typer.Option(False, "--initialize", "--i", help="出力ディレクトリを事前に初期化（既存ファイルを削除）")
 ):
     """CSVファイルの数値変数を可視化"""
     try:
         w, h = map(int, figsize.split(','))
-        typer.echo(csv_vslz.visualize_csv_data(str(csv_file), output_dir, (w, h), show_only, category, plot_type, exclude))
+        typer.echo(csv_vslz.visualize_csv_data(str(csv_file), output_dir, (w, h), show_only, category, plot_type, exclude, initialize))
     except ValueError:
         typer.echo("エラー: figsizeは '幅,高さ' の形式で指定してください（例: '12,4'）", err=True)
         raise typer.Exit(1)
