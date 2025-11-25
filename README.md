@@ -185,3 +185,17 @@ MIT License
 - カテゴリ別分析機能
 - 日本語フォント対応
 - コマンドラインインターフェース
+
+# ウェブサイト上の表をcsvファイルとして取得
+
+## 必要な依存関係
+beautifulsoup4, html5lib, requests, pandas, pathlib
+
+## 基本的な使用法
+
+```bash
+python zm12 get-table url（=任意のURL） name（=出力するファイルの名称を設定（既存の名称ならば上書き））
+
+### オプション
+-n number（=任意の数字（デフォルトは0））
+を付け足すと、数字＋１番目の表が取得できる（はずです）。

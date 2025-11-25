@@ -1,16 +1,16 @@
 import datetime
 import typer
-from pathlib import Path #for anl_csv
-from typing import Optional #for anl_csv
-from typing import Tuple #for anl_csv
-from zm12 import mathtools
-from zm12 import vegetable
-from . import demo
-from . import gtrends
-from . import csv_vslz #for anl_csv
+from pathlib import Path #for anlz_csv
+from typing import Optional #for anlz_csv
+from typing import Tuple #for anlz_csv
+#from zm12 import mathtools
+#from zm12 import vegetable
+#from . import demo
+#from . import gtrends
+from zm12 import csv_vslz #for anlz_csv csv_vslz.pyの最初の関数が勝手に実行されるのでget_tableのために沈黙させる
+from zm12 import shared #for get_table
 
 app = typer.Typer()
-
 
 @app.callback()
 def callback():
@@ -55,6 +55,14 @@ python csv_visualizer.py sales_data.csv --category "地域,商品カテゴリ" -
 if __name__ == "__main__":
     app()
 """
+
+@app.command()
+def get_table(url, name, number: int =typer.Option(0, "--number", "-n")):
+    typer.echo(shared.get_data(url, name, number))
+       
+if __name__ == "__main__":
+    app()
+
 
 @app.command()
 def now():

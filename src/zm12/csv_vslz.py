@@ -38,8 +38,9 @@ def setup_japanese_font():
     print("デフォルトフォント設定を使用します")
 
 # フォント設定を実行
-setup_japanese_font()
-warnings.filterwarnings('ignore')
+if __name__ == '__main__':
+    setup_japanese_font()
+    warnings.filterwarnings('ignore')
 
 def visualize_csv_data(csv_file_path, output_dir="plots", figsize=(12, 4), show_only=False, category_columns=None, plot_types="all", exclude_columns=None, initialize_dir=False):
     """
